@@ -1,7 +1,7 @@
 # Simple filterable items Vue component
 
 This is just a basic component which handles filtering and sorting of items.  I needed something like this
-for the 99% case where I have a table that users just want to filter and order by clicking columns.
+for the 99% case where I have a table that users just want to filter and order by clicking columns.  Most of the 'data tables' I could find for Vue were way more complex and way more demanding of the way you use them - I just needed the basics and to be css/html agnostic.
 
 The filtering and sorting are _very_ basic.  Just using plain javascript `String.includes()` and `Array.sort()`.  If you need something more advanced then you might be better forking this and adding the features you need.
 
