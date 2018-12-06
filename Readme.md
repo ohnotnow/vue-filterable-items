@@ -18,29 +18,29 @@ then elsewhere in your app (this is using bulma for css):
 
 ```
 <filterable-items :items='myArrayOfCarObjects' searchables="model_name,owner_name,owner_country">
-    <span slot-scope="{ items: cars, inputAttrs, inputEvents, sortOn }">
-        <input class="input" type="text" v-bind="inputAttrs" v-on="inputEvents" placeholder="Filter table...">
-        <table class="table is-fullwidth is-striped is-hover">
-            <thead>
-                <tr>
-                    <th @click.prevent="sortOn('model_name')" class="cursor-pointer">Model</th>
-                    <th @click.prevent="sortOn('owner_name')" class="cursor-pointer">Owner</th>
-                    <th @click.prevent="sortOn('owner_country')" class="cursor-pointer">Country</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr v-for="car in cars" :key="car.id">
-                    <td>
-                        <a :href="`/cars/${car.id}`">
-                            {{ car.model_name }}
-                        </a>
-                    </td>
-                    <td>{{ car.owner_name }}</td>
-                    <td>{{ car.owner_country }}</td>
-                </tr>
-            </tbody>
-        </table>
-    </span>
+  <span slot-scope="{ items: cars, inputAttrs, inputEvents, sortOn }">
+    <input class="input" type="text" v-bind="inputAttrs" v-on="inputEvents" placeholder="Filter table...">
+    <table class="table is-fullwidth is-striped is-hover">
+      <thead>
+        <tr>
+          <th @click.prevent="sortOn('model_name')" class="cursor-pointer">Model</th>
+          <th @click.prevent="sortOn('owner_name')" class="cursor-pointer">Owner</th>
+          <th @click.prevent="sortOn('owner_country')" class="cursor-pointer">Country</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr v-for="car in cars" :key="car.id">
+          <td>
+            <a :href="`/cars/${car.id}`">
+              {{ car.model_name }}
+            </a>
+          </td>
+          <td>{{ car.owner_name }}</td>
+          <td>{{ car.owner_country }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </span>
 </filterable-items>
 ```
 
