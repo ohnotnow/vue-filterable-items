@@ -50,3 +50,7 @@ The `filterable-items` component can take two props 'items' is an array of objec
 list of object keys which will be checked when searching.  If you don't pass them then it will search all of the object's keys for a match.
 
 The `span` within the component exposes some slot variables for you to use.  It returns the filtered items as 'items' (here mapped to 'cars' for readability in the table), some input attributes and events used to pass the search/filter term 'up' to the component and a 'sortOn' action so you can control the sort order of the items.
+
+### Thanks
+
+A quick thanks to Adam Wathan whose [vue component video course](https://adamwathan.me/advanced-vue-component-design/) let me understand doing this kind of renderless re-usable component - cheers!
