@@ -39,7 +39,7 @@ export default {
   methods: {
     itemToString(item) {
       if (!this.searchables) {
-        return Object.values(item); // only get searchables key values?
+        return Object.values(item);
       }
       return this.searchables.split(",").map(term => item[term]);
     },
