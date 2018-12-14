@@ -16,7 +16,7 @@ Vue.component('filterable-items', require('./components/FilterableItems.vue'));
 
 then elsewhere in your app (this is using bulma for css):
 
-```
+```Vue
 <filterable-items :items='myArrayOfCarObjects' searchables="model_name,owner_name,owner_country">
   <span slot-scope="{ items: cars, inputAttrs, inputEvents, sortOn }">
     <input class="input" type="text" v-bind="inputAttrs" v-on="inputEvents" placeholder="Filter table...">
@@ -50,6 +50,34 @@ The `filterable-items` component can take two props 'items' is an array of objec
 list of object keys which will be checked when searching.  If you don't pass them then it will search all of the object's keys for a match.
 
 The `span` within the component exposes some slot variables for you to use.  It returns the filtered items as 'items' (here mapped to 'cars' for readability in the table), some input attributes and events used to pass the search/filter term 'up' to the component and a 'sortOn' action so you can control the sort order of the items.
+
+The component will also emit two events which you can listen for outside of the component. `filtered` is fired when someone types into the filter box (if you have one) and will give an event object `{text: the-text-the-user-typed, matches: [the,matching,objects]}`.  The second is `sorted` which is fired when someone clicks on a column (or whatever) which called the `sortOn` function - it gives you `{column: the-column-name-they-clicked, order: boolean}`.  The `order` gives you `true` for a-z and `false` for z-a ordering.
+
+```Vue
+<my-wrapper-component>
+  <filterable-items @filtered="updatePageTitle" :items="books">
+    <span slot-scope="{ items: books, inputAttrs, inputEvents, sortOn }">
+      <input class="input" type="text" v-bind="inputAttrs" v-on="inputEvents" placeholder="Filter books...">
+      <ul>
+        <li v-for="book in books" :key="book.id">{{ book.title }}</li>
+      </ul>
+    </span>
+  </filterable-items>
+</my-wrapper-component>
+
+// ... inside MyWrapperComponent
+
+data() {
+  return {
+    books: [{id: 1, title: "The Growing Season"}, {id: 2, title: "The Gracekeepers"}]
+  }
+},
+methods: {
+  updatePageTitle(event) {
+    document.title = `Searching for ${event.text} - ${event.matches.length} results`;
+  }
+}
+```
 
 ### Thanks
 

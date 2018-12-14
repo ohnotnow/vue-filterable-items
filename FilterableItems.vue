@@ -4,7 +4,7 @@ export default {
 
   computed: {
     filteredItems() {
-      return this.items
+      const results = this.items
         .filter(item => {
           return this.itemToString(item)
             .join("")
@@ -25,6 +25,8 @@ export default {
                 .localeCompare(b[this.sortColumn].toString())
             : 0;
         });
+        this.$emit('filtered', {text: this.filterText, matches: results});
+        return results;
     }
   },
 
@@ -34,6 +36,11 @@ export default {
       sortColumn: null,
       sortOrder: false // false = a-z, true = z-a
     };
+  },
+
+  watch: {
+    filterText() {
+    }
   },
 
   methods: {
@@ -51,6 +58,7 @@ export default {
         this.sortOrder = true;
       }
       this.sortColumn = column;
+      this.$emit('sorted', {column: this.sortColumn, order: this.sortOrder});
     }
   },
 
